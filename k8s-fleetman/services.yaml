@@ -17,3 +17,24 @@ spec:
       nodePort: 30080
   
   type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-queue
+
+spec:
+  # define which pods are represented by this service
+  # the service is a network endpoint for other services or external callers
+  selector:
+    app: queue
+    release: "1"
+  
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8161
+      nodePort: 30010
+  
+  type: NodePort
